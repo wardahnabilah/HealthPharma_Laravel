@@ -15,7 +15,7 @@
         </a>
     </header>
 
-    <div class="pt-5">
+    <div class="pt-5 pb-10">
         {{ $slot }}
     </div>
     
