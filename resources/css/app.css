@@ -4,8 +4,8 @@
     --primary-lightbrown: hsl(28, 70%, 72%);
     --accent-darkbrown: hsl(28, 20%, 45%);
     --accent-green: hsl(168, 14%, 42%);
-    --accent-white: hsla(0, 0%, 100%);
-    --accent-black: hsl(0, 0%, 0%);
+    --accent-white: hsl(0, 0%, 100%);
+    --accent-black: hsl(0, 0%, 0%, .9);
 }
 
 body {
@@ -18,14 +18,14 @@ body {
     color: var(--accent-white);
 }
 
-.w-form {
-    width: 75%;
+/* Margin and Padding */
+.pb-10 {
+    padding-bottom: 10rem;
 }
 
-@media (min-width:992px) {
-    .w-form {
-        width: 30%;
-    }
+/* Font */
+.fs-btn {
+    font-size: .9rem;
 }
 
 /* Button */
@@ -46,9 +46,23 @@ body {
     color: var(--accent-black);
 }
 
+/* Link */
+.link-primary {
+    color: var(--accent-darkbrown) !important;
+}
+
+.link-primary:hover,
+.link-primary:focus,
+.link-primary:active {
+    color: var(--accent-darkbrown) !important;
+    border-bottom: solid .2rem;
+    transition: border-bottom ease 200ms;
+}
+
 
 /* Form */
-.form-control {
+.form-control,
+.form-select {
     padding-left: 1.125rem;
     padding-block: .625rem;
     border-radius: 1rem;
@@ -56,7 +70,19 @@ body {
 }
 
 .form-control:focus,
-.form-control:active {
+.form-control:active,
+.form-select:focus,
+.form-select:active {
     box-shadow: 0rem 0rem .75rem .125rem var(--primary-lightbrown);
     border-color: var(--primary-lightbrown);
+}
+
+.w-form {
+    width: 75%;
+}
+
+@media (min-width:992px) {
+    .w-form {
+        width: 30%;
+    }
 }
