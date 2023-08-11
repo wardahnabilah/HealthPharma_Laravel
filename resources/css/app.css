@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-lightbrown: hsl(28, 70%, 72%);
+    --accent-darkbrown: hsl(28, 20%, 45%);
+    --accent-green: hsl(168, 14%, 42%);
+    --accent-white: hsla(0, 0%, 100%);
+    --accent-black: hsl(0, 0%, 0%);
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+}
+
+.bg-green {
+    background-color: var(--accent-green);
+    color: var(--accent-white);
+}
+
+.w-form {
+    width: 75%;
+}
+
+@media (min-width:992px) {
+    .w-form {
+        width: 30%;
+    }
+}
+
+/* Button */
+.btn-primary {
+    background-color: var(--primary-lightbrown);
+    border-color: var(--primary-lightbrown);
+    color: var(--accent-black);
+    padding-left: 1.125rem;
+    padding-block: .625rem;
+    border-radius: 1rem;
+}
+
+.btn-primary:hover, 
+.btn-primary:active,
+.btn-primary:focus {
+    background-color: var(--accent-darkbrown) !important;
+    border-color: var(--accent-darkbrown) !important;
+    color: var(--accent-black);
+}
+
+
+/* Form */
+.form-control {
+    padding-left: 1.125rem;
+    padding-block: .625rem;
+    border-radius: 1rem;
+    border-color: var(--accent-black);
+}
+
+.form-control:focus,
+.form-control:active {
+    box-shadow: 0rem 0rem .75rem .125rem var(--primary-lightbrown);
+    border-color: var(--primary-lightbrown);
+}
