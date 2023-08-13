@@ -1,5 +1,9 @@
 <x-layout>
     <main class="container">
+        <div class="d-flex justify-content-between">
+            <h3 class="mb-4">Buat Transaksi Baru</h3>
+            <p class="login-as">Login sebagai: <span class="fw-bold">User</span></p>
+        </div>
         <div class="row">
             <section class="col-7 pe-3 border-end">
                 <form action="">
@@ -16,7 +20,7 @@
                             <p class="mb-3">Stok: 25</p>
                             <div class="d-flex gap-2">
                                 <input type="number" min="1" class="form-control w-form-sm text-center" placeholder="1">
-                                <button class="btn btn-primary fs-8 fw-semibold text-uppercase">Tambah</button>        
+                                <button class="btn btn-primary btn-primary-sm">Tambah</button>        
                             </div>
                         </div>
                     </div>
@@ -64,7 +68,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-secondary d-block w-75 mx-auto mt-5 text-uppercase fw-semibold fs-7">TAMBAH</button>
+                    <button class="btn btn-secondary w-100 mt-5">TAMBAH</button>
                 </div>
             </section>
         </div>
