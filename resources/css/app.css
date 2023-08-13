@@ -4,8 +4,15 @@
     --primary-lightbrown: hsl(28, 70%, 72%);
     --accent-darkbrown: hsl(28, 20%, 45%);
     --accent-green: hsl(168, 14%, 42%);
+    --accent-darkgreen: hsl(168, 14%, 32%);
     --accent-white: hsl(0, 0%, 100%);
     --accent-black: hsl(0, 0%, 0%, .9);
+    --accent-shadow-black: hsl(0, 0%, 0%, .25);
+    --accent-red: hsl(0, 60%, 48%);
+    --accent-darkred: hsl(0, 60%, 33%);
+    --accent-blue: hsl(190, 91%, 42%);
+    --accent-darkblue: hsl(190, 61%, 31%);
+
 }
 
 body {
@@ -13,6 +20,7 @@ body {
     font-size: 1rem;
 }
 
+/* Background Color */
 .bg-green {
     background-color: var(--accent-green);
     color: var(--accent-white);
@@ -24,18 +32,32 @@ body {
 }
 
 /* Font */
-.fs-btn {
-    font-size: .9rem;
+.fs-7 {
+    font-size: .875rem !important;
+}
+
+.fs-8 {
+    font-size: .8rem;
 }
 
 /* Button */
 .btn-primary {
     background-color: var(--primary-lightbrown);
-    border-color: var(--primary-lightbrown);
     color: var(--accent-black);
-    padding-left: 1.125rem;
-    padding-block: .625rem;
+    box-shadow: 0 2px 6px var(--accent-shadow-black);
+    border-color: var(--primary-lightbrown);
     border-radius: 1rem;
+    padding-inline: 1.125rem;
+    padding-block: .625rem;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: .9rem;
+}
+
+.btn-primary-sm {
+    padding-inline: 1rem;
+    padding-block: .25rem;
+    font-size: .8rem;
 }
 
 .btn-primary:hover, 
@@ -44,6 +66,50 @@ body {
     background-color: var(--accent-darkbrown) !important;
     border-color: var(--accent-darkbrown) !important;
     color: var(--accent-black);
+}
+
+.btn-primary-danger {
+    background-color: var(--accent-red);
+    color: var(--accent-white);
+} 
+
+.btn-primary-danger:hover,
+.btn-primary-danger:active,
+.btn-primary-danger:focus {
+    background-color: var(--accent-darkred) !important;
+    color: var(--accent-white) !important;
+}
+
+.btn-primary-info {
+    background-color: var(--accent-blue);
+    color: var(--accent-white);
+    border-color: var(--accent-blue) !important;
+} 
+
+.btn-primary-info:hover,
+.btn-primary-info:active,
+.btn-primary-info:focus {
+    background-color: var(--accent-darkblue) !important;
+    color: var(--accent-white) !important;
+    border-color: var(--accent-blue) !important;
+}
+
+.btn-secondary {
+    background-color: var(--accent-green);
+    border-color: var(--accent-green);
+    border-radius: 1rem;
+    color: var(--accent-white);
+    padding-inline: 1.125rem;
+    padding-block: .625rem;
+    font-size: .875rem;
+    font-weight: bolder;
+}
+
+.btn-secondary:hover, 
+.btn-secondary:active,
+.btn-secondary:focus {
+    background-color: var(--accent-darkgreen) !important;
+    border-color: var(--accent-darkgreen) !important;
 }
 
 /* Link */
@@ -81,8 +147,37 @@ body {
     width: 75%;
 }
 
+.w-form-sm {
+    width: 4.25rem;
+}
+
+.w-xsm {
+    width: 1px;
+}
+
 @media (min-width:992px) {
     .w-form {
         width: 30%;
     }
+}
+
+/* Others */
+.nav-link {
+    border-bottom: solid 2px var(--accent-white); 
+}
+
+.active {
+    border-bottom: solid 2px var(--accent-green); 
+    font-weight: bold;
+    color: var(--accent-green) !important;
+    transition: all ease 200ms;
+}
+
+.card-img {
+    width: 6.5rem;
+    object-fit: cover;
+}
+
+.card-img-sm {
+    height: 7.5rem;
 }
