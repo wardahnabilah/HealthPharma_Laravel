@@ -2,7 +2,7 @@
     <main class="container">
         <div class="d-flex justify-content-between">
             <h3 class="mb-4">Buat Transaksi Baru</h3>
-            <p class="login-as">Login sebagai: <span class="fw-bold">User</span></p>
+            <p class="login-as">Login sebagai: <span class="fw-bold">{{auth()->user()->username}}</span></p>
         </div>
         <div class="row">
             <section class="col-7 pe-3 border-end">

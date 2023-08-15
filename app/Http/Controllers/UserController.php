@@ -9,7 +9,16 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // Register
+    /* Homepage */
+    public function showHomepage() {
+        if(auth()->check()) {
+            return view('loggedin_homepage');
+        } else {
+            return view('homepage');
+        }
+    }
+
+    /* Register */
     public function showRegisterPage() {
         return view('register_page');
     }
@@ -30,6 +39,13 @@ class UserController extends Controller
 
         // Log in the user automatically
         auth()->login($newUser);
+
+        return redirect("/");
+    }
+
+    /* Logout */
+    public function logout() {
+        auth()->logout();
 
         return redirect("/");
     }
