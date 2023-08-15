@@ -9,10 +9,36 @@
     <title>Document</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <header class="shadow-sm">
-        <a href="" class="d-block px-4 py-2">
-            <img width="224" src="/healthpharma-logo.png" alt="Health Pharma Logo">
-        </a>
+    <header class="shadow-sm px-5 py-2">
+        <nav class="navbar navbar-expand-lg">
+            <a href="/" class="d-block">
+                <img width="224" src="/healthpharma-logo.png" alt="Health Pharma Logo">
+            </a>
+
+            <div class="ms-auto">
+
+            {{-- Sign Up, Login, Logout Button --}}
+                <ul class="navbar-nav ms-5">
+                {{-- Not Logged In --}}
+                
+    
+                {{-- Log out button --}}
+                @if(auth()->check())
+                    <li class="nav-item ms-2">
+                        <a href="/logout" class="btn btn-outline-danger">Log Out</a>
+                    </li>
+                {{-- Sign up and log in button --}}
+                @else
+                    <li class="nav-item">
+                        <a href="/register" class="btn btn-outline-success">Sign Up</a>
+                    </li>
+                    <li class="nav-item ps-2">
+                        <a href="/" class="btn btn-outline-success">Log in</a>
+                    </li>
+                @endif
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <div class="pt-5 pb-10">
