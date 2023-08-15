@@ -33,11 +33,11 @@ body {
 
 /* Font */
 .fs-7 {
-    font-size: .875rem !important;
+    font-size: 0.875rem !important;
 }
 
 .fs-8 {
-    font-size: .8rem;
+    font-size: 0.8rem;
 }
 
 /* Button */
@@ -48,16 +48,16 @@ body {
     border-color: var(--primary-lightbrown);
     border-radius: 1rem;
     padding-inline: 1.125rem;
-    padding-block: .625rem;
+    padding-block: 0.625rem;
     text-transform: uppercase;
     font-weight: bolder;
-    font-size: .9rem;
+    font-size: 0.9rem;
 }
 
 .btn-primary-sm {
     padding-inline: 1rem;
-    padding-block: .25rem;
-    font-size: .8rem;
+    padding-block: 0.25rem;
+    font-size: 0.8rem;
 }
 
 .btn-primary:hover, 
@@ -100,8 +100,8 @@ body {
     border-radius: 1rem;
     color: var(--accent-white);
     padding-inline: 1.125rem;
-    padding-block: .625rem;
-    font-size: .875rem;
+    padding-block: 0.625rem;
+    font-size: 0.875rem;
     font-weight: bolder;
 }
 
@@ -121,7 +121,7 @@ body {
 .link-primary:focus,
 .link-primary:active {
     color: var(--accent-darkbrown) !important;
-    border-bottom: solid .2rem;
+    border-bottom: solid 0.2rem;
     transition: border-bottom ease 200ms;
 }
 
@@ -130,7 +130,7 @@ body {
 .form-control,
 .form-select {
     padding-left: 1.125rem;
-    padding-block: .625rem;
+    padding-block: 0.625rem;
     border-radius: 1rem;
     border-color: var(--accent-black);
 }
@@ -139,7 +139,7 @@ body {
 .form-control:active,
 .form-select:focus,
 .form-select:active {
-    box-shadow: 0rem 0rem .75rem .125rem var(--primary-lightbrown);
+    box-shadow: 0rem 0rem 0.75rem 0.125rem var(--primary-lightbrown);
     border-color: var(--primary-lightbrown);
 }
 
@@ -180,4 +180,11 @@ body {
 
 .card-img-sm {
     height: 7.5rem;
+}
+
+.error-message {
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    font-size: 0.875rem;
+    color: red;
 }
