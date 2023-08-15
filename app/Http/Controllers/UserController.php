@@ -43,6 +43,23 @@ class UserController extends Controller
         return redirect("/");
     }
 
+    /* Login */
+    public function login(Request $request) {
+        $validatedReq = $request->validate([
+            'username_login' => ['required'],
+            'password_login' => ['required']
+        ]);
+
+        if(auth()->attempt(['username'=>$validatedReq['username_login'], 'password'=>$validatedReq['password_login']])) {
+            $request->session()->regenerate();
+            
+            return redirect("/");
+        } else {
+            return redirect("/")->withErrors(['login_failed'=>'Username or password is wrong']);
+        }
+
+    }
+
     /* Logout */
     public function logout() {
         auth()->logout();

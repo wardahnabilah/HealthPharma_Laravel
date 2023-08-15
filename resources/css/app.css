@@ -186,5 +186,13 @@ body {
     margin-top: 0.5rem;
     margin-left: 1rem;
     font-size: 0.875rem;
-    color: red;
+    color: var(--accent-red);
+}
+
+.error-message-md {
+    position: relative;
+    bottom: 1.75rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent-red);
 }
