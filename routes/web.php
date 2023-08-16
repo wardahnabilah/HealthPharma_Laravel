@@ -26,3 +26,4 @@ Route::get("/medicines", [MedicineController::class, 'showMedicinePage']);
 Route::get("/add-medicine", [MedicineController::class, 'showAddMedicine']);
 Route::post("/add-medicine", [MedicineController::class, 'addMedicine']);
 Route::get("/medicine/{medicine}", [MedicineController::class, 'getAMedicine']);
+Route::delete("/medicine/{medicine}", [MedicineController::class, 'deleteAMedicine']);

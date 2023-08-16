@@ -20,6 +20,7 @@ class MedicineController extends Controller
     /* Get a medicine (medicine detail)*/
     public function getAMedicine(Medicine $medicine) {
         return view('medicine_detail', [
+            'id_obat' => $medicine->id,
             'nama_obat' => $medicine->nama_obat,
             'stok' => $medicine->stok,
             'hargaRupiah' => $medicine->hargaRupiah(),
@@ -61,5 +62,12 @@ class MedicineController extends Controller
         ]);
         
         return redirect('/medicine/' . $newMedicine->id);
+    }
+
+    /* Delete a medicine */
+    public function deleteAMedicine(Medicine $medicine) {
+        $medicine->delete();
+
+        return redirect('/medicines');
     }
 }
