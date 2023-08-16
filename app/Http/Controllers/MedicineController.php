@@ -35,7 +35,7 @@ class MedicineController extends Controller
         $filename = $validatedReq['namaObat'] . '.jpg';
 
         // Store the image in storage folder
-        Storage::put('public/avatar/' . $filename, $resizedImage);
+        Storage::put('public/images/' . $filename, $resizedImage);
 
         // Store in database
         $newMedicine = Medicine::create([
