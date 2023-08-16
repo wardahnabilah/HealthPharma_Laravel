@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class MedicineController extends Controller
 {
-    /* Get all medicines */
+    /* Get all medicines */ 
     public function showMedicinePage() {
-        return view('medicines');
+        $medicines = Medicine::get();
+
+        return view('medicines', ['medicines' => $medicines]);
     }
 
     /* Get a medicine (medicine detail)*/

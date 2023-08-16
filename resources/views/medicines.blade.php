@@ -20,12 +20,13 @@
                 <th></th>
             </thead>
             <tbody>
+                @foreach($medicines as $medicine)
                 <tr>
-                    <td>1</td>
-                    <td>Vitamin C</td>
-                    <td>25</td>
-                    <td>5.000</td>
-                    <td>12 Agustus 2026</td>
+                    <td>{{$medicine->id}}</td>
+                    <td>{{$medicine->nama_obat}}</td>
+                    <td>{{$medicine->stok}}</td>
+                    <td>{{$medicine->hargaRupiah()}}</td>
+                    <td>{{$medicine->tanggal_expired->format('d-m-Y')}}</td>
                     <td>
                         {{-- Delete button --}}
                         <a href="" class="btn btn-outline-danger btn-primary-sm">
@@ -41,9 +42,10 @@
                             </svg>
                         </a>
                         {{-- Lihat Detail button --}}
-                        <a href="" class="btn btn-warning btn-primary-sm">Lihat Detail</a>
+                        <a href="/medicine/{{$medicine->id}}" class="btn btn-warning btn-primary-sm">Lihat Detail</a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </main>
