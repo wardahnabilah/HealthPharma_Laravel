@@ -1,28 +1,28 @@
 <x-layout>
     <main>
         <div class="p-5 w-50 mx-auto rounded-4 shadow">
-            <h1 class="fs-4 fw-bold text-center mb-5">Vitamin C</h1>
+            <h1 class="fs-4 fw-bold text-center mb-5">{{ $nama_obat }}</h1>
             <table class="table table-borderless align-middle w-75 mx-auto">
                 <tr>
                     <th>Stok</th>
                     <th>:</th>
-                    <td>25</td>
+                    <td>{{ $stok }}</td>
                 </tr>
                 <tr>
                     <th>Harga</th>
                     <th>:</th>
-                    <td>Rp 5.000,- </td>
+                    <td>{{ $hargaRupiah }}</td>
                 </tr>
                 <tr>
                     <th>Tanggal Expired</th>
                     <th>:</th>
-                    <td>17 - 08 - 2023</td>
+                    <td>{{ $tanggal_expired->format('d-m-Y') }}</td>
                 </tr>
                 <tr class="align-top">
                     <th>Gambar</th>
                     <th>:</th>
                     <td class="d-flex align-items-start">
-                        <img src="/fallback_img.jpg" class="card-img card-img-sm rounded-4" alt="">
+                        <img src="{{ $gambar_obat }}" class="card-img card-img-sm rounded-4" alt="{{ $gambar_obat }}">
                     </td>
                 </tr>
             </table>

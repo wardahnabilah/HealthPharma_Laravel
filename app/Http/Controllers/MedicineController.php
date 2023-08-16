@@ -10,8 +10,20 @@ use Illuminate\Support\Facades\Storage;
 
 class MedicineController extends Controller
 {
+    /* Get all medicines */
     public function showMedicinePage() {
         return view('medicines');
+    }
+
+    /* Get a medicine (medicine detail)*/
+    public function getAMedicine(Medicine $medicine) {
+        return view('medicine_detail', [
+            'nama_obat' => $medicine->nama_obat,
+            'stok' => $medicine->stok,
+            'hargaRupiah' => $medicine->hargaRupiah(),
+            'tanggal_expired' => $medicine->tanggal_expired,
+            'gambar_obat' => $medicine->gambar_obat
+        ]);
     }
 
     /* Add medicine */

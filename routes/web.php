@@ -25,3 +25,4 @@ Route::get("/logout", [UserController::class, 'logout']);
 Route::get("/medicines", [MedicineController::class, 'showMedicinePage']);
 Route::get("/add-medicine", [MedicineController::class, 'showAddMedicine']);
 Route::post("/add-medicine", [MedicineController::class, 'addMedicine']);
+Route::get("/medicine/{medicine}", [MedicineController::class, 'getAMedicine']);
