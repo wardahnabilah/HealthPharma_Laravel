@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <title>Document</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
