@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Medicine extends Model
 {
+    use Searchable;
     use HasFactory;
 
     protected $casts = [
@@ -30,5 +32,12 @@ class Medicine extends Model
         return Attribute::make(get: function($values) {
             return $values == '' ? '/fallback_img.jpg' : '/storage/images/' . $values;
         });
+    }
+
+    /* Search */
+    public function toSearchableArray() {
+        return [
+            'nama_obat' => $this->nama_obat
+        ];
     }
 }

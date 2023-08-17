@@ -29,3 +29,4 @@ Route::get("/medicine/{medicine}", [MedicineController::class, 'getAMedicine']);
 Route::get("/medicine/{medicine}/edit", [MedicineController::class, 'showEditMedicine']);
 Route::patch("/medicine/{medicine}/edit", [MedicineController::class, 'editAMedicine']);
 Route::delete("/medicine/{medicine}", [MedicineController::class, 'deleteAMedicine']);
+Route::get("/search/{keyword}", [MedicineController::class, 'searchMedicine']);

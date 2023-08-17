@@ -116,4 +116,11 @@ class MedicineController extends Controller
 
         return redirect('/medicines');
     }
+
+    /* Search medicine by keyword */
+    public function searchMedicine($keyword) {
+        $medicines = Medicine::search($keyword)->get();
+
+        return $medicines;
+    }
 }
