@@ -1,3 +1,7 @@
+<script setup>
+    const { orderList, totalHarga } = defineProps(['orderList', 'totalHarga'])
+    
+</script>
 <template>
     <section class="col-5 ps-4">
                 <div class="border w-100" style="height: 32rem">
@@ -6,24 +10,24 @@
                         <span>12 Agustus 2023</span>
                     </div>
 
-                    <table class="table table-bordered text-center fs-7">
-                        <thead class="table-dark">
+                    <table class="table table-bordered text-center">
+                        <thead class="table-dark fs-8">
                             <tr>
                                 <th>No</th>
                                 <th>Nama Barang</th>
                                 <th>Harga Satuan</th>
                                 <th>Jumlah</th>
-                                <th>Harga</th>
+                                <th>Subtotal</th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Vitamin C</td>
-                                <td>5.000</td>
-                                <td>2</td>
-                                <td>10.000</td>
+                        <tbody class="fs-7">
+                            <tr v-for="(medicine, index) in orderList" :key="medicine.id">
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ medicine.namaObat }}</td>
+                                <td>{{ medicine.hargaSatuan }}</td>
+                                <td>{{ medicine.jumlahObat }}</td>
+                                <td>{{ medicine.subtotalHarga }}</td>
                                 <td></td>
                             </tr>
                             <tr class="table-secondary">
@@ -32,7 +36,7 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">Total Harga</td>
-                                <td colspan="2">Rp 34.000,-</td>
+                                <td colspan="2">Rp {{ totalHarga }},-</td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>

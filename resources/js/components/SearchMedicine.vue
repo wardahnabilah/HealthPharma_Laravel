@@ -1,9 +1,10 @@
 <script setup>
-    import { ref } from "vue";
+    import { ref } from 'vue';
 
     const medicines = ref([])
     const searchKeyword = ref('')
     const searchTimeout = ref('')
+    const emit = defineEmits(['addSearchedItem'])
     
     function searchMedicine() {
         // If there is no keyword 
@@ -38,6 +39,13 @@
         showSearchResult()
     }
 
+    // Emit addSearchedIte
+    function emitAddSearchedItem(event, medicine) {
+        const medicineQty = event.target.orderItemQty.value
+
+        emit('addSearchedItem', medicineQty, medicine)
+    }
+
     function showLoading() {
         document.querySelector(".loading").classList.remove('hide')
     }
@@ -68,16 +76,16 @@
             </div>
             <!-- Medicine Cards -->
             <div v-else class="mt-4 d-flex flex-wrap gap-3 fs-6">
-                <div v-for="medicine in medicines" class="d-flex gap-3 shadow rounded-4 overflow-hidden" style="width: 19rem; height: 10.5rem">
+                <div v-for="medicine in medicines" :key="medicine.id" class="d-flex gap-3 shadow rounded-4 overflow-hidden" style="width: 19rem; height: 10.5rem">
                     <img :src="medicine.gambar_obat" class="card-img" alt="Gambar Obat">
                     <div class="d-flex flex-column justify-content-center">
                         <p class="mb-1 fw-bold">{{ medicine.nama_obat }}</p>
                         <p class="mb-2">Rp {{ medicine.harga }},-</p>
                         <p class="mb-3">Stok: {{ medicine.stok }}</p>
-                        <div class="d-flex gap-2">
-                            <input type="number" min="1" class="form-control w-form-sm text-center" placeholder="1">
+                        <form @submit.prevent="(event)=>emitAddSearchedItem(event, medicine)" class="d-flex gap-2">
+                            <input name="orderItemQty" type="number" min="1" class="form-control w-form-sm text-center" placeholder="1">
                             <button class="btn btn-primary btn-primary-sm">Tambah</button>        
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
