@@ -173,6 +173,10 @@ body {
     transition: all ease 200ms;
 }
 
+.hide {
+    display: none !important;
+}
+
 .card-img {
     width: 6.5rem;
     object-fit: cover;
@@ -195,4 +199,21 @@ body {
     text-align: center;
     font-weight: 600;
     color: var(--accent-red);
+}
+
+.loading {
+    width: 3.25rem;
+    aspect-ratio: 1;
+    display: block;
+    margin-inline: auto;
+    border: .6rem solid var(--accent-darkgreen);
+    border-top-color: #f9d948;
+    border-radius: 50%;
+    animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+    100% {
+        rotate: 360deg;
+    }
 }

@@ -3,6 +3,6 @@
 </script>
 <template>
     <div>
-        
+        <SearchMedicine />
     </div>
 </template>
