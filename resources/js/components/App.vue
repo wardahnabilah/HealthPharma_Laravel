@@ -27,6 +27,11 @@
         }
     }
 
+    // Delete item in orderList
+    function deleteOrderItem(id) {
+        orderList.value = orderList.value.filter(item => item.id !== id)
+    }
+
     // Total harga
     const totalHarga = computed(() => {
         return orderList.value.reduce((total, item) => total + item.subtotalHarga, 0)
@@ -36,6 +41,6 @@
 <template>
     <div class="row" >
         <SearchMedicine @addSearchedItem="addOrderItem"/>
-        <OrderListTable :orderList="orderList" :totalHarga="totalHarga"/>
+        <OrderListTable @deleteItem="deleteOrderItem" :orderList="orderList" :totalHarga="totalHarga"/>
     </div>
 </template>
