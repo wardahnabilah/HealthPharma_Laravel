@@ -9,13 +9,12 @@
 
     // Add item to orderList
     function addOrderItem(medicineQty, medicine) {
-        // const orderItemQty = event.target.orderItemQty.value
-        
+     
         const orderItem = {
             id: medicine.id,
             namaObat: medicine.nama_obat,
             hargaSatuan: medicine.harga,
-            jumlahObat: medicineQty,
+            jumlahBeli: medicineQty,
             subtotalHarga: medicine.harga * medicineQty
         }
 

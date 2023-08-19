@@ -32,7 +32,7 @@
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ medicine.namaObat }}</td>
                                 <td>{{ medicine.hargaSatuan }}</td>
-                                <td>{{ medicine.jumlahObat }}</td>
+                                <td>{{ medicine.jumlahBeli }}</td>
                                 <td>{{ medicine.subtotalHarga }}</td>
                                 <!-- Delete item button -->
                                 <td>
