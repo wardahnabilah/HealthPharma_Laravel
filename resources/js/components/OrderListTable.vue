@@ -1,4 +1,6 @@
 <script setup>
+    import { currentDate, formattedCurrentDate } from '../utils/dateUtil.js';
+
     const { orderList, totalHarga } = defineProps(['orderList', 'totalHarga'])
     const emit = defineEmits(['deleteItem'])
 
@@ -7,13 +9,29 @@
         emit('deleteItem', id)
     }
 
+    // Store in database
+    async function storeInDatabase(totalHarga) {
+        const requestData = {
+            tanggalTransaksi: currentDate(),
+            totalHarga: totalHarga,
+            orderList: orderList
+        }
+        console.log(totalHarga);
+        
+        try {
+            const response = await axios.post('/add-transaction', requestData)
+            console.log(response.data);
+        } catch(err) {
+            console.log(err);
+        }
+    }
 </script>
 <template>
     <section class="col-5 ps-4">
                 <div class="border w-100" style="height: 32rem">
                     <div class="d-flex justify-content-between px-3 py-2 border-bottom">
                         <span>No. Pesanan 1</span>
-                        <span>12 Agustus 2023</span>
+                        <span>{{ formattedCurrentDate() }}</span>
                     </div>
 
                     <table class="table table-bordered text-center">
@@ -58,7 +76,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-secondary w-100 mt-5">TAMBAH</button>
+                    <button @click="()=>storeInDatabase(totalHarga)" :class="orderList.length ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5">TAMBAH</button>
                 </div>
             </section>
 </template>

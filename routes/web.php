@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,6 @@ Route::get("/medicine/{medicine}/edit", [MedicineController::class, 'showEditMed
 Route::patch("/medicine/{medicine}/edit", [MedicineController::class, 'editAMedicine']);
 Route::delete("/medicine/{medicine}", [MedicineController::class, 'deleteAMedicine']);
 Route::get("/search/{keyword}", [MedicineController::class, 'searchMedicine']);
+
+// Transaction Route
+Route::post("/add-transaction", [TransactionController::class, 'addTransaction']);
