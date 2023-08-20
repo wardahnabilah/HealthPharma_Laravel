@@ -1,8 +1,19 @@
 <script setup>
+    import { ref } from 'vue';
     import { currentDate, formattedCurrentDate } from '../utils/dateUtil.js';
 
     const { orderList, totalHarga } = defineProps(['orderList', 'totalHarga'])
     const emit = defineEmits(['deleteItem'])
+    const jumlahBayar = ref()
+    const kembalian = ref(0)
+
+    function calculateKembalian(total) {
+        if(jumlahBayar.value > total) {
+            kembalian.value = jumlahBayar.value - total
+        } else{
+            kembalian.value = 0
+        }
+    }
 
     // Emit deleteItem
     function emitDeleteItem(id) {
@@ -10,13 +21,12 @@
     }
 
     // Store in database
-    async function storeInDatabase(totalHarga) {
+    async function storeInDatabase(total) {
         const requestData = {
             tanggalTransaksi: currentDate(),
-            totalHarga: totalHarga,
+            totalHarga: total,
             orderList: orderList
         }
-        console.log(totalHarga);
         
         try {
             const response = await axios.post('/add-transaction', requestData)
@@ -37,12 +47,12 @@
                     <table class="table table-bordered text-center">
                         <thead class="table-dark fs-8">
                             <tr>
-                                <th>No</th>
-                                <th>Nama Barang</th>
-                                <th>Harga Satuan</th>
-                                <th>Jumlah</th>
-                                <th>Subtotal</th>
-                                <th></th>
+                                <th class="col-1">No</th>
+                                <th class="col-3">Nama Barang</th>
+                                <th class="col-3">Harga Satuan</th>
+                                <th class="col-1">Jumlah</th>
+                                <th class="col-2">Subtotal</th>
+                                <th class="col-1"></th>
                             </tr>
                         </thead>
                         <tbody class="fs-7">
@@ -72,11 +82,18 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">Total Bayar</td>
+                                <td colspan="2">
+                                    <input @input="()=>calculateKembalian(totalHarga)" :disabled="orderList.length == 0" class="w-100 text-center text-inherit" type="number" v-model="jumlahBayar">
+                                </td>
+                            </tr>
+                            <tr>
                                 <td colspan="2"></td>
+                                <td colspan="2">Kembalian</td>
+                                <td colspan="2">Rp {{ kembalian }},-</td>
                             </tr>
                         </tbody>
                     </table>
-                    <button @click="()=>storeInDatabase(totalHarga)" :class="orderList.length ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5">TAMBAH</button>
+                    <button @click="()=>storeInDatabase(totalHarga)" :class="orderList.length && jumlahBayar ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5">TAMBAH</button>
                 </div>
             </section>
 </template>
