@@ -107,6 +107,16 @@ body {
     padding-block: 0.625rem;
     font-size: 0.875rem;
     font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.btn-secondary.ghost {
+    background-color: transparent;
+    color: var(--accent-green);
+}
+
+.btn-secondary.ghost:hover {
+    color: var(--accent-white);
 }
 
 .btn-secondary:hover, 
@@ -219,5 +229,21 @@ body {
 @keyframes loading {
     100% {
         rotate: 360deg;
+    }
+}
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        visibility: hidden;
+    }    
+
+    #printedArea { 
+        visibility: visible !important;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
     }
 }

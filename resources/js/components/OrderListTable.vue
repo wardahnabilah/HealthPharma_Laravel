@@ -1,4 +1,5 @@
 <script setup>
+    import TransactionOverlay from './TransactionOverlay.vue'
     import { ref } from 'vue';
     import { currentDate, formattedCurrentDate } from '../utils/dateUtil.js';
 
@@ -6,6 +7,7 @@
     const emit = defineEmits(['deleteItem'])
     const jumlahBayar = ref()
     const kembalian = ref(0)
+    const transactionData = ref({})
 
     function calculateKembalian(total) {
         if(jumlahBayar.value > total) {
@@ -21,16 +23,20 @@
     }
 
     // Store in database
-    async function storeInDatabase(total) {
+    async function storeInDatabase(total, orderList) {
         const requestData = {
             tanggalTransaksi: currentDate(),
             totalHarga: total,
+            jumlahBayar: jumlahBayar.value,
+            kembalian: kembalian.value,
             orderList: orderList
         }
         
         try {
             const response = await axios.post('/add-transaction', requestData)
             console.log(response.data);
+
+            transactionData.value = requestData
         } catch(err) {
             console.log(err);
         }
@@ -40,7 +46,7 @@
     <section class="col-5 ps-4">
                 <div class="border w-100" style="height: 32rem">
                     <div class="d-flex justify-content-between px-3 py-2 border-bottom">
-                        <span>No. Pesanan 1</span>
+                        <span></span>
                         <span>{{ formattedCurrentDate() }}</span>
                     </div>
 
@@ -83,7 +89,7 @@
                                 <td colspan="2"></td>
                                 <td colspan="2">Total Bayar</td>
                                 <td colspan="2">
-                                    <input @input="()=>calculateKembalian(totalHarga)" :disabled="orderList.length == 0" class="w-100 text-center text-inherit" type="number" v-model="jumlahBayar">
+                                    <input @input="()=>calculateKembalian(totalHarga, orderList)" :disabled="orderList.length == 0" class="w-100 text-center text-inherit" type="number" v-model="jumlahBayar">
                                 </td>
                             </tr>
                             <tr>
@@ -93,7 +99,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button @click="()=>storeInDatabase(totalHarga)" :class="orderList.length && jumlahBayar ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5">TAMBAH</button>
+                    <button @click="()=>storeInDatabase(totalHarga, orderList)" :class="orderList.length && jumlahBayar ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5" type="button" data-bs-toggle="modal" data-bs-target="#receipt">TAMBAH</button>
+                    <TransactionOverlay :id="'receipt'" :transactionData="transactionData" />
                 </div>
             </section>
 </template>
