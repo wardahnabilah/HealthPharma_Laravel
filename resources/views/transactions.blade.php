@@ -7,7 +7,9 @@
                 <th class="w-25">Tanggal Transaksi</th>
                 <th>Pegawai</th>
                 <th>Total Harga</th>
-                <th></th>
+                @if(auth()->user()->role == 'admin')
+                    <th></th>
+                @endif
             </thead>
             <tbody>
                 @foreach($transactions as $transaction)
@@ -16,16 +18,18 @@
                     <td>{{$transaction->tanggal_transaksi}}</td>
                     <td>{{$transaction->employee->username}}</td>
                     <td>{{$transaction->total_harga}}</td>
-                    <td>
-                        {{-- Delete button --}}
-                        <form action="/transactions/{{$transaction->id}}" method="POST" class="d-inline-block">
-                        @method('DELETE')
-                        @csrf
-                            <button type="submit" class="btn btn-outline-danger btn-primary-sm">
-                                Batalkan
-                            </button>
-                        </form>
-                    </td>
+                    @can('delete', $transaction)
+                        <td>
+                            {{-- Delete button --}}
+                            <form action="/transactions/{{$transaction->id}}" method="POST" class="d-inline-block">
+                            @method('DELETE')
+                            @csrf
+                                <button type="submit" class="btn btn-outline-danger btn-primary-sm">
+                                    Batalkan
+                                </button>
+                            </form>
+                        </td>
+                    @endcan
                 </tr>
                 @endforeach
             </tbody>

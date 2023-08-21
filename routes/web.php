@@ -35,4 +35,4 @@ Route::get("/search/{keyword}", [MedicineController::class, 'searchMedicine'])->
 // Transaction Route
 Route::get("/transactions", [TransactionController::class, 'showTransactionPage'])->middleware('auth');
 Route::post("/add-transaction", [TransactionController::class, 'addTransaction'])->middleware('auth');
-Route::delete("/transactions/{transaction}", [TransactionController::class, 'deleteTransaction'])->middleware('auth');
+Route::delete("/transactions/{transaction}", [TransactionController::class, 'deleteTransaction'])->middleware('auth', 'can:delete,transaction');
