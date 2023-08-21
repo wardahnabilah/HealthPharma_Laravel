@@ -61,7 +61,7 @@ class MedicineController extends Controller
             'gambar_obat' => $filename
         ]);
         
-        return redirect('/medicine/' . $newMedicine->id);
+        return redirect('/medicine/' . $newMedicine->id)->with('success', 'Obat berhasil ditambahkan');
     }
 
     /* Edit a medicine */
@@ -106,7 +106,7 @@ class MedicineController extends Controller
             'tanggal_expired' => $validatedReq['expiredObat']
         ]);
 
-        return redirect('/medicine/' . $medicine->id);
+        return redirect('/medicine/' . $medicine->id)->with('success', 'Perubahan berhasil disimpan');
     }
     
 
@@ -114,7 +114,7 @@ class MedicineController extends Controller
     public function deleteAMedicine(Medicine $medicine) {
         $medicine->delete();
 
-        return redirect('/medicines');
+        return redirect('/medicines')->with('success', 'Obat berhasil dihapus');
     }
 
     /* Search medicine by keyword */
