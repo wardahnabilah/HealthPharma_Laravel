@@ -40,7 +40,7 @@ class UserController extends Controller
         // Log in the user automatically
         auth()->login($newUser);
 
-        return redirect("/");
+        return redirect("/")->with('success', 'Akun berhasil dibuat');
     }
 
     /* Login */
@@ -53,9 +53,9 @@ class UserController extends Controller
         if(auth()->attempt(['username'=>$validatedReq['username_login'], 'password'=>$validatedReq['password_login']])) {
             $request->session()->regenerate();
             
-            return redirect("/");
+            return redirect("/")->with('success', 'Berhasil Login');
         } else {
-            return redirect("/")->withErrors(['login_failed'=>'Username or password is wrong']);
+            return redirect("/")->withErrors(['login_failed'=>'Username atau password tidak cocok']);
         }
 
     }
@@ -64,6 +64,6 @@ class UserController extends Controller
     public function logout() {
         auth()->logout();
 
-        return redirect("/");
+        return redirect("/")->with('success', 'Berhasil Log out');
     }
 }

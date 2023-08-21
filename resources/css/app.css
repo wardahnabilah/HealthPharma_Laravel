@@ -4,6 +4,7 @@
     --primary-lightbrown: hsl(28, 70%, 72%);
     --accent-darkbrown: hsl(28, 20%, 45%);
     --accent-green: hsl(168, 14%, 42%);
+    --accent-green-success: hsl(143, 57%, 42%);
     --accent-darkgreen: hsl(168, 14%, 32%);
     --accent-white: hsl(0, 0%, 100%);
     --accent-black: hsl(0, 0%, 0%, .9);
@@ -213,6 +214,33 @@ body {
     text-align: center;
     font-weight: 600;
     color: var(--accent-red);
+}
+
+.flash-message {
+    width: max-content;
+    position: relative;
+    top: 2rem;
+    margin-inline: auto;
+    margin-bottom: 2rem;
+    padding-block: 0.75rem;
+    padding-left: 1.5rem;
+    padding-right: 1rem;
+    border-radius: 1rem;
+    color: #fff;
+    font-weight: bolder;
+    letter-spacing: 0.5px;
+}
+
+.flash-message.success {
+    background-color: var(--accent-green-success);
+}
+
+.flash-message.failed {
+    background-color: var(--accent-red);
+}
+
+#close-btn-flash:hover {
+    cursor: pointer;
 }
 
 .loading {
