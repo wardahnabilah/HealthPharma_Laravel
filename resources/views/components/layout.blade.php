@@ -24,6 +24,9 @@
                         <li class="nav-item">
                             <a href="/" class="nav-link {{request()->segment(1) == '' ? 'active' : ''}}">Buat Transaksi</a>
                         </li>
+                        <li class="nav-item ms-3">
+                            <a href="/transactions" class="nav-link {{request()->segment(1) == 'transactions' ? 'active' : ''}}">Data Transaksi</a>
+                        </li>
                     @if(auth()->user()->role == 'admin')
                         <li class="nav-item ms-3">
                             <a href="/medicines" class="nav-link {{request()->segment(1) == 'medicines' ? 'active' : ''}}">Data Obat</a>
