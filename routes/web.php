@@ -26,10 +26,10 @@ Route::get("/logout", [UserController::class, 'logout'])->middleware('auth');
 Route::get("/medicines", [MedicineController::class, 'showMedicinePage'])->middleware('auth', 'onlyAdmin');
 Route::get("/add-medicine", [MedicineController::class, 'showAddMedicine'])->middleware('auth', 'onlyAdmin');
 Route::post("/add-medicine", [MedicineController::class, 'addMedicine'])->middleware('auth', 'onlyAdmin');
-Route::get("/medicine/{medicine}", [MedicineController::class, 'getAMedicine'])->middleware('auth', 'onlyAdmin');
-Route::get("/medicine/{medicine}/edit", [MedicineController::class, 'showEditMedicine'])->middleware('auth', 'onlyAdmin');
-Route::patch("/medicine/{medicine}/edit", [MedicineController::class, 'editAMedicine'])->middleware('auth', 'onlyAdmin');
-Route::delete("/medicine/{medicine}", [MedicineController::class, 'deleteAMedicine'])->middleware('auth', 'onlyAdmin');
+Route::get("/medicines/{medicine}", [MedicineController::class, 'getAMedicine'])->middleware('auth', 'onlyAdmin');
+Route::get("/medicines/{medicine}/edit", [MedicineController::class, 'showEditMedicine'])->middleware('auth', 'onlyAdmin');
+Route::patch("/medicines/{medicine}/edit", [MedicineController::class, 'editAMedicine'])->middleware('auth', 'onlyAdmin');
+Route::delete("/medicines/{medicine}", [MedicineController::class, 'deleteAMedicine'])->middleware('auth', 'onlyAdmin');
 Route::get("/search/{keyword}", [MedicineController::class, 'searchMedicine'])->middleware('auth');
 
 // Transaction Route

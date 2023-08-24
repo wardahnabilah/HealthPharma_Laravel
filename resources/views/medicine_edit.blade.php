@@ -2,7 +2,7 @@
     <main>
         <div class="p-5 w-50 mx-auto rounded-4 shadow">
             <h1 class="fs-4 fw-bold text-center mb-5">Edit Obat</h1>
-            <form action="/medicine/{{ $id_obat }}/edit" method="POST" enctype="multipart/form-data" class="d-flex flex-column gap-3 mx-auto">
+            <form action="/medicines/{{ $id_obat }}/edit" method="POST" enctype="multipart/form-data" class="d-flex flex-column gap-3 mx-auto">
             @method('PATCH')
             @csrf
                 <table class="table table-borderless align-middle">

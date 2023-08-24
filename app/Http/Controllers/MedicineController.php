@@ -112,7 +112,7 @@ class MedicineController extends Controller
             'tanggal_expired' => $validatedReq['expiredObat']
         ]);
 
-        return redirect('/medicine/' . $medicine->id)->with('success', 'Perubahan berhasil disimpan');
+        return redirect('/medicines/' . $medicine->id)->with('success', 'Perubahan berhasil disimpan');
     }
     
 
