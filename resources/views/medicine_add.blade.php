@@ -9,7 +9,7 @@
                         <th class="col-3">Nama Obat</th>
                         <th>:</th>
                         <td>
-                            <input type="text" value="{{old('namaObat')}}" name="namaObat" id="namaObat" class=" form-control" placeholder="Nama Obat">
+                            <input oninput="changeFormat" type="text" value="{{old('namaObat')}}" name="namaObat" id="namaObat" class=" form-control" placeholder="Nama Obat">
                             @error('namaObat')
                                 <div class="error-message">{{$message}}</div>
                             @enderror
@@ -29,7 +29,7 @@
                         <th>Harga</th>
                         <th>:</th>
                         <td>
-                            <input type="number" value="{{old('hargaObat')}}" name="hargaObat" id="nama-obat" class=" form-control" placeholder="Rp 10.000, -">
+                            <input oninput="changeFormat" type="text" value="{{old('hargaObat')}}" name="hargaObat" id="nama-obat" class="form-control" placeholder="Rp 10.000, -">
                             @error('hargaObat')
                                 <div class="error-message">{{$message}}</div>
                             @enderror
@@ -61,4 +61,37 @@
             </form> 
         </div>
     </main>
+
+    {{-- Script --}}
+    <script>
+        function changeFormat(event) {        
+            event.target.value = moneyFormatWithRupiah(event.target.value)
+    
+            // Set the caret(cursor) position
+            const caretPosition = event.target.value.length - 2
+            event.target.setSelectionRange(caretPosition, caretPosition)
+        }
+
+        function moneyFormatWithRupiah(value) {
+            let formattedValue = moneyFormat(value)
+            
+            return 'Rp' + formattedValue + ',-'
+        }
+
+        function moneyFormat(value) {
+            // Accept only number
+            let formattedValue = numberFormat(value)
+
+            // Add . every three digits
+            formattedValue = formattedValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+
+            return formattedValue   
+        }
+
+        function numberFormat(value) {
+            let onlyNumberValue = value.replace(/\D/g, '')
+            
+            return onlyNumberValue
+        }
+    </script>
 </x-layout>

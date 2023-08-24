@@ -17,7 +17,7 @@
                     <td>{{$transaction->id}}</td>
                     <td>{{$transaction->tanggal_transaksi}}</td>
                     <td>{{$transaction->employee->username}}</td>
-                    <td>{{$transaction->total_harga}}</td>
+                    <td>{{$transaction->totalHargaRupiah()}}</td>
                     @can('delete', $transaction)
                         <td>
                             {{-- Delete button --}}

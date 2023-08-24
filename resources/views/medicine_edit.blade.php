@@ -30,7 +30,7 @@
                         <th>Harga</th>
                         <th>:</th>
                         <td>
-                            <input type="number" name="hargaObat" value="{{ $harga }}" id="nama-obat" class=" form-control" placeholder="Rp 10.000, -">
+                            <input oninput="changeFormat(event)" type="text" name="hargaObat" value="{{ $harga }}" id="nama-obat" class=" form-control" placeholder="Rp 10.000, -">
                             @error('hargaObat')
                                 <div class="error-message">{{$message}}</div>
                             @enderror
@@ -62,4 +62,37 @@
             </form> 
         </div>
     </main>
+
+    {{-- Script --}}
+    <script>
+        function changeFormat(event) {        
+            event.target.value = moneyFormatWithRupiah(event.target.value)
+    
+            // Set the caret(cursor) position
+            const caretPosition = event.target.value.length - 2
+            event.target.setSelectionRange(caretPosition, caretPosition)
+        }
+
+        function moneyFormatWithRupiah(value) {
+            let formattedValue = moneyFormat(value)
+            
+            return 'Rp' + formattedValue + ',-'
+        }
+
+        function moneyFormat(value) {
+            // Accept only number
+            let formattedValue = numberFormat(value)
+
+            // Add . every three digits
+            formattedValue = formattedValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+
+            return formattedValue
+        }
+
+        function numberFormat(value) {
+            let onlyNumberValue = value.replace(/\D/g, '')
+            
+            return onlyNumberValue
+        }
+    </script>
 </x-layout>

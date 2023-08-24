@@ -2,16 +2,32 @@
     import TransactionOverlay from './TransactionOverlay.vue'
     import { ref } from 'vue';
     import { currentDate, formattedCurrentDate } from '../utils/dateUtil.js';
+    import { moneyFormat, moneyFormatWithRupiah } from '../utils/moneyFormat';
 
     const { orderList, totalHarga } = defineProps(['orderList', 'totalHarga'])
     const emit = defineEmits(['deleteItem'])
-    const jumlahBayar = ref()
+    const jumlahBayar = ref('')
     const kembalian = ref(0)
     const transactionData = ref({})
 
-    function calculateKembalian(total) {
-        if(jumlahBayar.value > total) {
-            kembalian.value = jumlahBayar.value - total
+    // jumlahBayar handler
+    function handleJumlahBayar(event, totalHarga) {        
+        // Change the input's format
+        event.target.value = moneyFormatWithRupiah(event.target.value)
+        jumlahBayar.value = event.target.value
+        
+        // Set the caret(cursor) position
+        const caretPosition = event.target.value.length - 2
+        event.target.setSelectionRange(caretPosition, caretPosition)
+        
+        // Calculate kembalian
+        const bayar = event.target.value.replace(/\D/g, '') //Remove 'Rp' and ',-'
+        calculateKembalian(totalHarga, bayar)
+    }
+
+    function calculateKembalian(totalHarga, bayar) {
+        if(bayar >= totalHarga) {
+            kembalian.value = bayar - totalHarga
         } else{
             kembalian.value = 0
         }
@@ -37,6 +53,11 @@
             console.log(response.data);
 
             transactionData.value = requestData
+
+            // Show Transaction Overlay
+            const modal = new bootstrap.Modal(document.querySelector('#receipt'))
+            modal.show()
+
         } catch(err) {
             console.log(err);
         }
@@ -65,9 +86,9 @@
                             <tr v-for="(medicine, index) in orderList" :key="medicine.id">
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ medicine.namaObat }}</td>
-                                <td>{{ medicine.hargaSatuan }}</td>
+                                <td>{{ moneyFormat(medicine.hargaSatuan.toString()) }}</td>
                                 <td>{{ medicine.jumlahBeli }}</td>
-                                <td>{{ medicine.subtotalHarga }}</td>
+                                <td>{{ moneyFormat(medicine.subtotalHarga.toString()) }}</td>
                                 <!-- Delete item button -->
                                 <td>
                                     <button @click="()=>emitDeleteItem(medicine.id)" class="btn btn-danger btn-primary-xsm">
@@ -83,23 +104,23 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">Total Harga</td>
-                                <td colspan="2">Rp {{ totalHarga }},-</td>
+                                <td colspan="2">{{ moneyFormatWithRupiah(totalHarga.toString()) }}</td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">Total Bayar</td>
                                 <td colspan="2">
-                                    <input @input="()=>calculateKembalian(totalHarga, orderList)" :disabled="orderList.length == 0" class="w-100 text-center text-inherit" type="number" v-model="jumlahBayar">
+                                    <input :value="jumlahBayar" @input="(event)=>handleJumlahBayar(event, totalHarga)" :disabled="orderList.length == 0" class="w-100 text-center text-inherit" type="text">
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">Kembalian</td>
-                                <td colspan="2">Rp {{ kembalian }},-</td>
+                                <td colspan="2">{{ moneyFormatWithRupiah(kembalian.toString()) }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <button @click="()=>storeInDatabase(totalHarga, orderList)" :class="orderList.length && jumlahBayar ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5" type="button" data-bs-toggle="modal" data-bs-target="#receipt">TAMBAH</button>
+                    <button @click="()=>storeInDatabase(totalHarga, orderList)" :class="orderList.length && jumlahBayar ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5" type="button">TAMBAH</button>
                     <TransactionOverlay :id="'receipt'" :transactionData="transactionData" />
                 </div>
             </section>

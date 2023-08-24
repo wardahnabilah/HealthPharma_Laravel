@@ -1,5 +1,6 @@
 <script setup>
     import { formattedCurrentDate } from '../utils/dateUtil.js';
+    import { moneyFormat, moneyFormatWithRupiah } from '../utils/moneyFormat';
 
     const { id, transactionData } = defineProps(['id', 'transactionData'])
 
@@ -27,7 +28,7 @@
                     </div>
                     <div class="mt-3 me-2 fs-7">Tanggal: {{ formattedCurrentDate() }}</div>
                 </div>
-                <table class="table table-borderless">
+                <table class="table table-borderless text-center">
                     <thead class="fs-8">
                         <tr class="text-center">
                             <th class="col-1">No</th>
@@ -39,11 +40,11 @@
                     </thead>
                     <tbody class="fs-7">
                         <tr v-for="(medicine, index) in transactionData.orderList" :key="medicine.id">
-                            <td class="text-center">{{ index + 1 }}</td>
-                            <td class="text-center">{{ medicine.namaObat }}</td>
-                            <td class="text-center">{{ medicine.hargaSatuan }}</td>
-                            <td class="text-center">{{ medicine.jumlahBeli }}</td>
-                            <td class="text-end">{{ medicine.subtotalHarga }}</td>
+                            <td>{{ index + 1 }}</td>
+                                <td>{{ medicine.namaObat }}</td>
+                                <td>{{ moneyFormat(medicine.hargaSatuan.toString()) }}</td>
+                                <td>{{ medicine.jumlahBeli }}</td>
+                                <td>{{ moneyFormat(medicine.subtotalHarga.toString()) }}</td>
                         </tr>
                         <tr class="border-top border-bottom">
                             <td colspan="6"></td>
@@ -51,19 +52,19 @@
                         <tr class="text-end">
                             <td colspan="2"></td>
                             <td colspan="1">Total Harga</td>
-                            <td colspan="2 text-end">Rp {{ transactionData.totalHarga }},-</td>
+                            <td colspan="2 text-end">{{ transactionData.totalHarga && moneyFormatWithRupiah(transactionData.totalHarga.toString()) }}</td>
                         </tr>
                         <tr class="text-end">
                             <td colspan="2"></td>
                             <td colspan="1">Total Bayar</td>
                             <td colspan="2">
-                                {{ transactionData.jumlahBayar }}
+                                {{ transactionData.jumlahBayar && moneyFormatWithRupiah(transactionData.jumlahBayar.toString()) }}
                             </td>
                         </tr>
                         <tr class="text-end">
                             <td colspan="2"></td>
                             <td colspan="1">Kembalian</td>
-                            <td colspan="2">Rp {{ transactionData.kembalian }},-</td>
+                            <td colspan="2">{{ transactionData.kembalian && moneyFormatWithRupiah(transactionData.kembalian.toString()) }}</td>
                         </tr>
                     </tbody>
                 </table>

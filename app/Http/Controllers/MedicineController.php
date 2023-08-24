@@ -35,6 +35,9 @@ class MedicineController extends Controller
     }
 
     public function addMedicine(Request $request) {
+        // Remove 'Rp and ,-'
+        $request['hargaObat'] = preg_replace('/\D/', '', $request['hargaObat']);
+        
         $validatedReq = $request->validate([
             'namaObat' => ['required', 'min:3', Rule::unique('medicines', 'nama_obat')],
             'stokObat' => ['required', 'min:0', 'integer'],
@@ -77,6 +80,9 @@ class MedicineController extends Controller
     }
 
     public function editAMedicine(Request $request, Medicine $medicine) {
+        // Remove 'Rp and ,-'
+        $request['hargaObat'] = preg_replace('/\D/', '', $request['hargaObat']);
+        
         $validatedReq = $request->validate([
             'namaObat' => ['required', 'min:3', Rule::unique('medicines', 'nama_obat')->ignore($medicine->id)],
             'stokObat' => ['required', 'min:0', 'integer'],
