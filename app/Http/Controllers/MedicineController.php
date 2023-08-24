@@ -64,7 +64,7 @@ class MedicineController extends Controller
             'gambar_obat' => $filename
         ]);
         
-        return redirect('/medicine/' . $newMedicine->id)->with('success', 'Obat berhasil ditambahkan');
+        return redirect('/medicines')->with('success', 'Obat berhasil ditambahkan');
     }
 
     /* Edit a medicine */

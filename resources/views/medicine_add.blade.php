@@ -29,7 +29,7 @@
                         <th>Harga</th>
                         <th>:</th>
                         <td>
-                            <input oninput="changeFormat" type="text" value="{{old('hargaObat')}}" name="hargaObat" id="nama-obat" class="form-control" placeholder="Rp 10.000, -">
+                            <input oninput="changeFormat(event)" type="text" value="{{old('hargaObat')}}" name="hargaObat" id="nama-obat" class="form-control" placeholder="Rp 10.000, -">
                             @error('hargaObat')
                                 <div class="error-message">{{$message}}</div>
                             @enderror
