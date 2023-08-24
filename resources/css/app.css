@@ -28,18 +28,37 @@ body {
     color: var(--accent-white);
 }
 
+/* Width and Height */
+.w-2 {
+    width: 10.5rem;
+}
+
+.w-19 {
+    width: 19rem;
+}
+
+.h-12 {
+    height: 13rem;
+}
+
 /* Margin and Padding */
 .pb-10 {
     padding-bottom: 10rem;
 }
 
-/* Font */
+/* Font and Text */
 .fs-7 {
     font-size: 0.875rem !important;
 }
 
 .fs-8 {
     font-size: 0.8rem;
+}
+
+.clamp-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* Button */

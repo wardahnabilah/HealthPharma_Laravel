@@ -1,6 +1,6 @@
 <script setup>
     import { ref } from 'vue';
-    import { numberFormat } from '../utils/moneyFormat';
+    import { moneyFormatWithRupiah, numberFormat } from '../utils/moneyFormat';
 
     const { isClicked } = defineProps(['isClicked'])
     const medicines = ref([])
@@ -100,14 +100,14 @@
             </div>
             <!-- Medicine Cards -->
             <div v-else class="mt-4 d-flex flex-wrap gap-3 fs-6">
-                <div v-for="medicine in medicines" :key="medicine.id" class="d-flex gap-3 shadow rounded-4 overflow-hidden" style="width: 19rem; height: 10.5rem">
+                <div v-for="medicine in medicines" :key="medicine.id" class="w-19 h-12 d-flex gap-3 shadow rounded-4 overflow-hidden">
                     <img :src="medicine.gambar_obat" class="card-img" alt="Gambar Obat">
-                    <div class="d-flex flex-column justify-content-center">
-                        <p class="mb-1 fw-bold">{{ medicine.nama_obat }}</p>
-                        <p class="mb-2">Rp {{ medicine.harga }},-</p>
-                        <div class="d-flex gap-3 align-items-center">
-                            <p class="mb-3">Stok: {{ medicine.stok }}</p>
-                            <p v-if="medicine.stok == 0" class="fs-8 p-1 rounded bg-danger text-light">Kosong</p>
+                    <div class="d-flex flex-column justify-content-center py-3">
+                        <p class="w-2 mb-1  pe-1 fw-bold clamp-text ">{{ medicine.nama_obat }}</p>
+                        <p class="mb-2">{{ moneyFormatWithRupiah(medicine.harga.toString()) }}</p>
+                        <div class="mb-2 d-flex gap-3 align-items-center">
+                            <p class="">Stok: {{ medicine.stok }}</p>
+                            <p v-if="medicine.stok == 0" class="fs-8 mt-1 ms-4 p-1 rounded bg-danger text-light">Kosong</p>
                         </div>
                         <form @submit.prevent="(event)=>emitAddSearchedItem(event, medicine)" class="d-flex gap-2">
                             <input @input="(event)=>handleQtyInput(event, medicine.stok)" :disabled="btnIsClicked(medicine, isClicked)" name="orderItemQty" type="number" min="1" class="form-control w-form-sm text-center" placeholder="0">
