@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medicine;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -29,14 +30,19 @@ class TransactionController extends Controller
             'total_harga' => $validatedRequest['totalHarga']
         ]);
 
-        // Store orderList in transaction detail table
         foreach($validatedRequest['orderList'] as $orderItem) {
+            // Store orderList in transaction detail table
             $newTransaction->details()->create([
                 'nama_obat' => $orderItem['namaObat'], 
                 'harga_satuan' => $orderItem['hargaSatuan'],
                 'jumlah_beli' => $orderItem['jumlahBeli'],
                 'subtotal' => $orderItem['subtotalHarga']
             ]);
+
+             // Update medicinesStok
+            $updateMedicine = Medicine::find( $orderItem['id']);
+            $updateMedicine->stok = $updateMedicine->stok - $orderItem['jumlahBeli'];
+            $updateMedicine->save();
         }
 
         return 'Stored!';
