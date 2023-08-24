@@ -15,7 +15,7 @@
                 @foreach($transactions as $transaction)
                 <tr>
                     <td>{{$transaction->id}}</td>
-                    <td>{{$transaction->tanggal_transaksi}}</td>
+                    <td>{{$transaction->tanggal_transaksi->format('d-m-Y')}}</td>
                     <td>{{$transaction->employee->username}}</td>
                     <td>{{$transaction->totalHargaRupiah()}}</td>
                     @can('delete', $transaction)

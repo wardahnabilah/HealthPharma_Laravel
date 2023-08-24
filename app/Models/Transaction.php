@@ -13,6 +13,10 @@ class Transaction extends Model
 
     protected $fillable = ['tanggal_transaksi', 'employee_id', 'total_harga'];
 
+    protected $casts = [
+        'tanggal_transaksi' => 'date'
+    ];
+
     public function totalHargaRupiah() {
         return 'Rp ' . number_format($this->total_harga, 0, '', '.') . ',-';
     }
