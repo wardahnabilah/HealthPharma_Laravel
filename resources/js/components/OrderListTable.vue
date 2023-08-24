@@ -9,6 +9,7 @@
     const jumlahBayar = ref('')
     const kembalian = ref(0)
     const transactionData = ref({})
+    const isFilled = ref(false)
 
     // jumlahBayar handler
     function handleJumlahBayar(event, totalHarga) {        
@@ -28,8 +29,10 @@
     function calculateKembalian(totalHarga, bayar) {
         if(bayar >= totalHarga) {
             kembalian.value = bayar - totalHarga
+            isFilled.value = true
         } else{
             kembalian.value = 0
+            isFilled.value = false
         }
     }
 
@@ -120,7 +123,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button @click="()=>storeInDatabase(totalHarga, orderList)" :class="orderList.length && jumlahBayar ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5" type="button">TAMBAH</button>
+                    <button @click="()=>storeInDatabase(totalHarga, orderList)" :class="isFilled ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5" type="button">TAMBAH</button>
                     <TransactionOverlay :id="'receipt'" :transactionData="transactionData" />
                 </div>
             </section>

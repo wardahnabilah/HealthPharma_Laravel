@@ -1,5 +1,6 @@
 <script setup>
     import { ref } from 'vue';
+    import { numberFormat } from '../utils/moneyFormat';
 
     const medicines = ref([])
     const searchKeyword = ref('')
@@ -43,7 +44,19 @@
     function emitAddSearchedItem(event, medicine) {
         const medicineQty = event.target.orderItemQty.value
 
+        event.target.orderItemQty.value = ''
+
+        
         emit('addSearchedItem', medicineQty, medicine)
+    }
+
+    // Set the input to only accept number and set minimum and maximum input
+    function handleQtyInput(event, stok) {
+        event.target.value = numberFormat(event.target.value)
+        
+        if(event.target.value > stok) {
+            event.target.value = stok
+        }
     }
 
     function showLoading() {
@@ -83,8 +96,8 @@
                         <p class="mb-2">Rp {{ medicine.harga }},-</p>
                         <p class="mb-3">Stok: {{ medicine.stok }}</p>
                         <form @submit.prevent="(event)=>emitAddSearchedItem(event, medicine)" class="d-flex gap-2">
-                            <input name="orderItemQty" type="number" min="1" class="form-control w-form-sm text-center" placeholder="1">
-                            <button class="btn btn-primary btn-primary-sm">Tambah</button>        
+                            <input @input="(event)=>handleQtyInput(event, medicine.stok)" name="orderItemQty" type="number" min="1" class="form-control w-form-sm text-center" placeholder="0">
+                            <button id="submitButton" class="btn btn-primary btn-primary-sm">Tambah</button>        
                         </form>
                     </div>
                 </div>
