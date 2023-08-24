@@ -6,6 +6,7 @@
 
 
     const orderList = ref([]);
+    const isClicked = ref([])
 
     // Add item to orderList
     function addOrderItem(medicineQty, medicine) {
@@ -23,12 +24,14 @@
 
         if(medicineQty!= '' && !alreadyAdded) {
             orderList.value.push(orderItem)
+            isClicked.value.push(orderItem.id)
         }
     }
 
     // Delete item in orderList
     function deleteOrderItem(id) {
         orderList.value = orderList.value.filter(item => item.id !== id)
+        isClicked.value = isClicked.value.filter(itemId => itemId !== id)
     }
 
     // Total harga
@@ -39,7 +42,14 @@
 </script>
 <template>
     <div class="row" >
-        <SearchMedicine @addSearchedItem="addOrderItem"/>
-        <OrderListTable @deleteItem="deleteOrderItem" :orderList="orderList" :totalHarga="totalHarga"/>
+        <SearchMedicine 
+            @addSearchedItem="addOrderItem" 
+            :isClicked="isClicked"
+        />
+        <OrderListTable 
+            @deleteItem="deleteOrderItem" 
+            :orderList="orderList" 
+            :totalHarga="totalHarga"
+        />
     </div>
 </template>

@@ -2,6 +2,7 @@
     import { ref } from 'vue';
     import { numberFormat } from '../utils/moneyFormat';
 
+    const { isClicked } = defineProps(['isClicked'])
     const medicines = ref([])
     const searchKeyword = ref('')
     const searchTimeout = ref('')
@@ -45,9 +46,10 @@
         const medicineQty = event.target.orderItemQty.value
 
         event.target.orderItemQty.value = ''
-
-        
-        emit('addSearchedItem', medicineQty, medicine)
+    
+        if(medicineQty != '') {        
+            emit('addSearchedItem', medicineQty, medicine)
+        }
     }
 
     // Set the input to only accept number and set minimum and maximum input
@@ -56,6 +58,15 @@
         
         if(event.target.value > stok) {
             event.target.value = stok
+        }
+    }
+
+    // Disabled button and input
+    function btnIsClicked(medicine, isClicked) {
+        if(isClicked.includes(medicine.id) || medicine.stok == 0) {
+            return true
+        } else {
+            return false
         }
     }
 
@@ -94,10 +105,13 @@
                     <div class="d-flex flex-column justify-content-center">
                         <p class="mb-1 fw-bold">{{ medicine.nama_obat }}</p>
                         <p class="mb-2">Rp {{ medicine.harga }},-</p>
-                        <p class="mb-3">Stok: {{ medicine.stok }}</p>
+                        <div class="d-flex gap-3 align-items-center">
+                            <p class="mb-3">Stok: {{ medicine.stok }}</p>
+                            <p v-if="medicine.stok == 0" class="fs-8 p-1 rounded bg-danger text-light">Kosong</p>
+                        </div>
                         <form @submit.prevent="(event)=>emitAddSearchedItem(event, medicine)" class="d-flex gap-2">
-                            <input @input="(event)=>handleQtyInput(event, medicine.stok)" name="orderItemQty" type="number" min="1" class="form-control w-form-sm text-center" placeholder="0">
-                            <button id="submitButton" class="btn btn-primary btn-primary-sm">Tambah</button>        
+                            <input @input="(event)=>handleQtyInput(event, medicine.stok)" :disabled="btnIsClicked(medicine, isClicked)" name="orderItemQty" type="number" min="1" class="form-control w-form-sm text-center" placeholder="0">
+                            <button id="submitButton" class="btn btn-primary btn-primary-sm" :disabled="btnIsClicked(medicine, isClicked)">Tambah</button>        
                         </form>
                     </div>
                 </div>

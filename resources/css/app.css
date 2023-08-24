@@ -9,6 +9,7 @@
     --accent-white: hsl(0, 0%, 100%);
     --accent-black: hsl(0, 0%, 0%, .9);
     --accent-shadow-black: hsl(0, 0%, 0%, .25);
+    --accent-grey: hsl(0, 1%, 48%);
     --accent-red: hsl(0, 60%, 48%);
     --accent-darkred: hsl(0, 60%, 33%);
     --accent-blue: hsl(190, 91%, 42%);
@@ -53,6 +54,11 @@ body {
     text-transform: uppercase;
     font-weight: bolder;
     font-size: 0.9rem;
+}
+
+.btn-primary:disabled {
+    background-color: var(--accent-grey);
+    border-color: var(--accent-grey);
 }
 
 .btn-primary-sm {
@@ -158,6 +164,12 @@ body {
     border-color: var(--primary-lightbrown);
 }
 
+.form-control:disabled {
+    cursor: auto;
+    border-color: var(--accent-grey);
+    box-shadow: none;
+}
+
 .w-form {
     width: 75%;
 }
@@ -169,6 +181,7 @@ body {
 .w-xsm {
     width: 1px;
 }
+
 
 @media (min-width:992px) {
     .w-form {
