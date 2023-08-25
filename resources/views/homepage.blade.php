@@ -21,9 +21,9 @@
                 </div>
                 <button class="btn btn-primary w-100 mt-4 text-uppercase fs-btn fw-semibold">Login</button>
             </form>
-            <p class="mb-0 pt-5 pb-4 text-center">or</p>
+            <p class="mb-0 pt-5 pb-3 fs-7 text-center">Belum mempunyai akun?</p>
             <div class="w-100 text-center">
-                <a href="/register" class="mx-auto link-primary link-underline link-underline-opacity-0 fw-bold">Create New Account</a href="/register">
+                <a href="/register" class="mx-auto link-primary link-underline link-underline-opacity-0 fw-bold">Buat Akun</a href="/register">
             </div>    
         </div>
     </main>

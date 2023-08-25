@@ -101,7 +101,7 @@
             <!-- Medicine Cards -->
             <div v-else class="mt-4 d-flex flex-wrap gap-3 fs-6">
                 <div v-for="medicine in medicines" :key="medicine.id" class="w-19 h-12 d-flex gap-3 shadow rounded-4 overflow-hidden">
-                    <img :src="medicine.gambar_obat" class="card-img" alt="Gambar Obat">
+                    <img :src="medicine.gambar_obat" class="card-img" :alt="'Gambar ' + medicine.nama_obat">
                     <div class="d-flex flex-column justify-content-center py-3">
                         <p class="w-2 mb-1  pe-1 fw-bold clamp-text ">{{ medicine.nama_obat }}</p>
                         <p class="mb-2">{{ moneyFormatWithRupiah(medicine.harga.toString()) }}</p>

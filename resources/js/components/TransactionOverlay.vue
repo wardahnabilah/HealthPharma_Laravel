@@ -1,6 +1,7 @@
 <script setup>
     import { formattedCurrentDate } from '../utils/dateUtil.js';
     import { moneyFormat, moneyFormatWithRupiah } from '../utils/moneyFormat';
+    import healthPharmaLogo from '../../../public/healthpharma-logo.png';
 
     const { id, transactionData } = defineProps(['id', 'transactionData'])
 
@@ -22,7 +23,7 @@
             <div class="modal-body" id="printedArea">
                 <div class="d-flex justify-content-between border-bottom">
                     <div class="mb-2">
-                        <img width="200" src="/healthpharma-logo.png" alt="">
+                        <img width="200" :src="healthPharmaLogo" alt="Health Pharma Logo">
                         <p class="fs-8 m-0 ps-3">Jl. Kucing Putih no 23</p>
                         <p class="fs-8 m-0 ps-3">08123456778</p>
                     </div>

@@ -36,11 +36,7 @@
                 </div>
                 <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
                 <button class="btn btn-primary w-100 mt-5 text-uppercase fs-btn fw-semibold">Sign Up</button>
-            </form>
-            <p class="mb-0 pt-5 pb-4 text-center">or</p>
-            <div class="w-100 text-center">
-                <a href="/" class="mx-auto link-primary link-underline link-underline-opacity-0 fw-bold">Login</a href="/register">
-            </div>    
+            </form> 
         </div>
     </main>
 </x-layout>
