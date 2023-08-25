@@ -26,7 +26,6 @@ class TransactionController extends Controller
         // Sanitize the requests
         $validatedReq['tanggalTransaksi'] = strip_tags($validatedReq['tanggalTransaksi']);
         $validatedReq['totalHarga'] = strip_tags($validatedReq['totalHarga']); 
-        $validatedReq['orderList'] = strip_tags($validatedReq['orderList']); 
 
         // Store in transaction table
         $newTransaction = Transaction::create([

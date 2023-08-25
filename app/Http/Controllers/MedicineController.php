@@ -51,7 +51,6 @@ class MedicineController extends Controller
         $validatedReq['stokObat'] = strip_tags($validatedReq['stokObat']);
         $validatedReq['hargaObat'] = strip_tags($validatedReq['hargaObat']);
         $validatedReq['expiredObat'] = strip_tags($validatedReq['expiredObat']);
-        $validatedReq['gambarObat'] = strip_tags($validatedReq['gambarObat']);
        
         // Resized the image
         $resizedImage = Image::make($validatedReq['gambarObat'])->fit(125)->encode('jpg');
@@ -103,7 +102,6 @@ class MedicineController extends Controller
         $validatedReq['stokObat'] = strip_tags($validatedReq['stokObat']);
         $validatedReq['hargaObat'] = strip_tags($validatedReq['hargaObat']);
         $validatedReq['expiredObat'] = strip_tags($validatedReq['expiredObat']);
-        $validatedReq['gambarObat'] = strip_tags($validatedReq['gambarObat']);
 
         // If the image is changed
         if(isset($validatedReq['gambarObat'])) {
