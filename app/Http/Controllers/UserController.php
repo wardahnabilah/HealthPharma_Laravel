@@ -31,6 +31,12 @@ class UserController extends Controller
             'password' => ['required', 'min:8', 'confirmed']
         ]);
 
+        // Sanitize the requests
+        $validatedReq['fullname'] = strip_tags($validatedReq['fullname']);
+        $validatedReq['role'] = strip_tags($validatedReq['role']);
+        $validatedReq['username'] = strip_tags($validatedReq['username']);
+        $validatedReq['password'] = strip_tags($validatedReq['password']);
+
         // Hash the password
         $validatedReq['password'] = Hash::make($validatedReq['password']);
 
@@ -49,6 +55,10 @@ class UserController extends Controller
             'username_login' => ['required'],
             'password_login' => ['required']
         ]);
+
+        // Sanitize the requests
+        $validatedReq['username_login'] = strip_tags($validatedReq['username_login']);
+        $validatedReq['password_login'] = strip_tags($validatedReq['password_login']);
 
         if(auth()->attempt(['username'=>$validatedReq['username_login'], 'password'=>$validatedReq['password_login']])) {
             $request->session()->regenerate();

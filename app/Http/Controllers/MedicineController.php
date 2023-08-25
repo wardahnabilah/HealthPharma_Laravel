@@ -46,6 +46,13 @@ class MedicineController extends Controller
             'gambarObat' => ['required', 'image', 'max:7000']
         ]);
 
+        // Sanitize the requests
+        $validatedReq['namaObat'] = strip_tags($validatedReq['namaObat']);
+        $validatedReq['stokObat'] = strip_tags($validatedReq['stokObat']);
+        $validatedReq['hargaObat'] = strip_tags($validatedReq['hargaObat']);
+        $validatedReq['expiredObat'] = strip_tags($validatedReq['expiredObat']);
+        $validatedReq['gambarObat'] = strip_tags($validatedReq['gambarObat']);
+       
         // Resized the image
         $resizedImage = Image::make($validatedReq['gambarObat'])->fit(125)->encode('jpg');
 
@@ -90,6 +97,13 @@ class MedicineController extends Controller
             'expiredObat' => ['required'],
             'gambarObat' => ['image', 'max:7000']
         ]);
+
+        // Sanitize the requests
+        $validatedReq['namaObat'] = strip_tags($validatedReq['namaObat']);
+        $validatedReq['stokObat'] = strip_tags($validatedReq['stokObat']);
+        $validatedReq['hargaObat'] = strip_tags($validatedReq['hargaObat']);
+        $validatedReq['expiredObat'] = strip_tags($validatedReq['expiredObat']);
+        $validatedReq['gambarObat'] = strip_tags($validatedReq['gambarObat']);
 
         // If the image is changed
         if(isset($validatedReq['gambarObat'])) {

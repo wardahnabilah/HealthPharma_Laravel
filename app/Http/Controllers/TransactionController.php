@@ -17,20 +17,25 @@ class TransactionController extends Controller
 
     // Add a transaction
     public function addTransaction(Request $request) {
-        $validatedRequest = $request->validate([
+        $validatedReq = $request->validate([
             'tanggalTransaksi' => ['required'],
             'totalHarga' => ['required'],
             'orderList' => ['required']
         ]);
 
+        // Sanitize the requests
+        $validatedReq['tanggalTransaksi'] = strip_tags($validatedReq['tanggalTransaksi']);
+        $validatedReq['totalHarga'] = strip_tags($validatedReq['totalHarga']); 
+        $validatedReq['orderList'] = strip_tags($validatedReq['orderList']); 
+
         // Store in transaction table
         $newTransaction = Transaction::create([
-            'tanggal_transaksi' => $validatedRequest['tanggalTransaksi'],
+            'tanggal_transaksi' => $validatedReq['tanggalTransaksi'],
             'employee_id' => auth()->user()->id,
-            'total_harga' => $validatedRequest['totalHarga']
+            'total_harga' => $validatedReq['totalHarga']
         ]);
 
-        foreach($validatedRequest['orderList'] as $orderItem) {
+        foreach($validatedReq['orderList'] as $orderItem) {
             // Store orderList in transaction detail table
             $newTransaction->details()->create([
                 'nama_obat' => $orderItem['namaObat'], 
