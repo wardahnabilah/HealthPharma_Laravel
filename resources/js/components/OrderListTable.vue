@@ -10,6 +10,7 @@
     const kembalian = ref(0)
     const transactionData = ref({})
     const isFilled = ref(false)
+    const isLoggedIn = ref(true)
 
     // jumlahBayar handler
     function handleJumlahBayar(event, totalHarga) {        
@@ -53,7 +54,11 @@
         
         try {
             const response = await axios.post('/add-transaction', requestData)
-            console.log(response.data);
+            
+            // If not login
+            if(response.data === 'Not login') {
+                isLoggedIn.value = false
+            }
 
             transactionData.value = requestData
 
@@ -124,7 +129,11 @@
                         </tbody>
                     </table>
                     <button @click="()=>storeInDatabase(totalHarga, orderList)" :class="isFilled ? '' : 'disabled'" class="btn btn-secondary w-100 mt-5" type="button">TAMBAH</button>
-                    <TransactionOverlay :id="'receipt'" :transactionData="transactionData" />
+                    <TransactionOverlay 
+                        :id="'receipt'" 
+                        :transactionData="transactionData"
+                        :isLoggedIn="isLoggedIn"     
+                    />
                 </div>
             </section>
 </template>

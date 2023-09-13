@@ -3,7 +3,7 @@
     import { moneyFormat, moneyFormatWithRupiah } from '../utils/moneyFormat';
     import healthPharmaLogo from '../../../public/healthpharma-logo.png';
 
-    const { id, transactionData } = defineProps(['id', 'transactionData'])
+    const { id, transactionData, isLoggedIn } = defineProps(['id', 'transactionData', 'isLoggedIn'])
 
     function reloadPage() {
         location.reload()
@@ -21,6 +21,7 @@
                 <h1 class="modal-title fs-5 mx-auto" id="staticBackdropLabel">Bukti Transaksi</h1>
             </div>
             <div class="modal-body" id="printedArea">
+                <p v-if="!isLoggedIn" class="text-center error-message">Untuk menyimpan transaksi di dalam database, silahkan login terlebih dahulu</p>
                 <div class="d-flex justify-content-between border-bottom">
                     <div class="mb-2">
                         <img width="200" :src="healthPharmaLogo" alt="Health Pharma Logo">

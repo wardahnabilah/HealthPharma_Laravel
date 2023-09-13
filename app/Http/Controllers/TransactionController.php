@@ -17,6 +17,10 @@ class TransactionController extends Controller
 
     // Add a transaction
     public function addTransaction(Request $request) {
+        if(!auth()->check()) {
+            return 'Not login';
+        }
+
         $validatedReq = $request->validate([
             'tanggalTransaksi' => ['required'],
             'totalHarga' => ['required'],

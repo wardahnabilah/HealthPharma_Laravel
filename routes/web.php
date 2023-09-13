@@ -31,9 +31,9 @@ Route::get("/medicines/{medicine}", [MedicineController::class, 'getAMedicine'])
 Route::get("/medicines/{medicine}/edit", [MedicineController::class, 'showEditMedicine'])->middleware('auth', 'onlyAdmin');
 Route::patch("/medicines/{medicine}/edit", [MedicineController::class, 'editAMedicine'])->middleware('auth', 'onlyAdmin');
 Route::delete("/medicines/{medicine}", [MedicineController::class, 'deleteAMedicine'])->middleware('auth', 'onlyAdmin');
-Route::get("/search/{keyword}", [MedicineController::class, 'searchMedicine'])->middleware('auth');
+Route::get("/search/{keyword}", [MedicineController::class, 'searchMedicine']);
 
 // Transaction Route
 Route::get("/transactions", [TransactionController::class, 'showTransactionPage'])->middleware('auth');
-Route::post("/add-transaction", [TransactionController::class, 'addTransaction'])->middleware('auth');
+Route::post("/add-transaction", [TransactionController::class, 'addTransaction']);
 Route::delete("/transactions/{transaction}", [TransactionController::class, 'deleteTransaction'])->middleware('auth', 'can:delete,transaction');
