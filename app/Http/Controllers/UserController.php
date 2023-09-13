@@ -11,11 +11,7 @@ class UserController extends Controller
 {
     /* Homepage */
     public function showHomepage() {
-        if(auth()->check()) {
-            return view('loggedin_homepage');
-        } else {
-            return view('homepage');
-        }
+        return view('homepage');
     }
 
     /* Register */
@@ -50,6 +46,10 @@ class UserController extends Controller
     }
 
     /* Login */
+    public function showLoginPage() {
+        return view('login_page');
+    }
+
     public function login(Request $request) {
         $validatedReq = $request->validate([
             'username_login' => ['required'],
