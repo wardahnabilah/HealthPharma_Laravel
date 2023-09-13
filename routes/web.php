@@ -20,7 +20,7 @@ Route::get("/", [UserController::class, 'showHomepage']);
 Route::get("/register", [UserController::class, 'showRegisterPage'])->middleware('guest');
 Route::post("/register", [UserController::class, 'register'])->middleware('guest');
 Route::get("/login", [UserController::class, 'showLoginPage'])->middleware('guest');
-Route::post("/login", [UserController::class, 'login'])->middleware('guest');
+Route::post("/login", [UserController::class, 'login'])->middleware('guest')->name('login');
 Route::get("/logout", [UserController::class, 'logout'])->middleware('auth');
 
 // Medicine Route

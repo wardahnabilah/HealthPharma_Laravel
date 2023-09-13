@@ -20,30 +20,26 @@
             <div class="ms-auto">
             {{-- Sign Up, Login, Logout Button --}}
                 <ul class="navbar-nav ms-5">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link {{request()->segment(1) == '' ? 'active' : ''}}">Buat Transaksi</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a href="/transactions" class="nav-link {{request()->segment(1) == 'transactions' ? 'active' : ''}}">Data Transaksi</a>
+                    </li>
+                @if(!auth()->check() || auth()->user()->role == 'admin') 
+                    <li class="nav-item ms-3">
+                        <a href="/medicines" class="nav-link {{request()->segment(1) == 'medicines' ? 'active' : ''}}">Data Obat</a>
+                    </li>
+                @endif
                 {{-- Log out button --}}
                 @if(auth()->check())
-                        <li class="nav-item">
-                            <a href="/" class="nav-link {{request()->segment(1) == '' ? 'active' : ''}}">Buat Transaksi</a>
-                        </li>
-                        <li class="nav-item ms-3">
-                            <a href="/transactions" class="nav-link {{request()->segment(1) == 'transactions' ? 'active' : ''}}">Data Transaksi</a>
-                        </li>
-                    @if(auth()->user()->role == 'admin')
-                        <li class="nav-item ms-3">
-                            <a href="/medicines" class="nav-link {{request()->segment(1) == 'medicines' ? 'active' : ''}}">Data Obat</a>
-                        </li>
-                    @endif
-
                     <li class="nav-item ms-5">
                         <a href="/logout" class="btn btn-outline-danger">Log Out</a>
                     </li>
                 {{-- Sign up and log in button --}}
                 @else
-                    <li class="nav-item">
-                        <a href="/register" class="btn btn-outline-success">Sign Up</a>
-                    </li>
                     <li class="nav-item ps-2">
-                        <a href="/" class="btn btn-outline-success">Log in</a>
+                        <a href="/login" class="btn btn-outline-success">Log in</a>
                     </li>
                 @endif
                 </ul>
