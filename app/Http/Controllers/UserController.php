@@ -65,7 +65,7 @@ class UserController extends Controller
             
             return redirect("/")->with('success', 'Berhasil Login');
         } else {
-            return redirect("/")->withErrors(['login_failed'=>'Username atau password tidak cocok']);
+            return back()->withErrors(['login_failed'=>'Username atau password tidak cocok']);
         }
 
     }
